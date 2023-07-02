@@ -1,5 +1,10 @@
-import './globals.css'
 import { Inter } from 'next/font/google'
+import { NavBar } from '@/components/NavBar'
+import { Layout } from '@/components/Layout'
+import { TaskProvider } from '@/context/TaskContext'
+import { Toaster } from 'react-hot-toast'
+
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +20,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <TaskProvider>
+          <NavBar />
+          <Layout>
+            {children}
+          </Layout>
+          <Toaster/>
+        </TaskProvider>
+      </body>
     </html>
-  )
+  );
 }
